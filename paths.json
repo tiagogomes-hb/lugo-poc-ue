@@ -1,10 +1,10 @@
 {
   "mappings": [
-    "/content/aem-boilerplate/:/",
-    "/content/aem-boilerplate/configuration:/.helix/config.json",
-    "/content/aem-boilerplate/metadata:/metadata.json"
+    "/content/lugo-poc-eds/:/",
+    "/content/lugo-poc-eds/configuration:/.helix/config.json",
+    "/content/lugo-poc-eds/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/aem-boilerplate/"
+    "/content/lugo-poc-eds/"
   ]
 }
