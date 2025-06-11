@@ -167,7 +167,7 @@
                 "template": {
                   "name": "Teaser",
                   "model": "teaser",
-                  "width": "50%",
+                  "width": "50",
                   "headline": "Teaser headline",
                   "subline": "subline text"
                 }
