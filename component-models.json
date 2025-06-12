@@ -220,7 +220,7 @@
     "fields": [
       {
         "component": "select",
-        "name": "layout",
+        "name": "classes",
         "label": "Layout",
         "options": [
           {
@@ -230,8 +230,7 @@
           {
             "name": "60-40",
             "value": "60-40"
-          }
-          ,
+          },
           {
             "name": "50-50",
             "value": "50-50"

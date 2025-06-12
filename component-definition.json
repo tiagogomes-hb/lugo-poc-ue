@@ -173,7 +173,8 @@
               }
             }
           }
-        },{
+        },
+        {
           "title": "Teaser",
           "id": "teaser",
           "plugins": {
