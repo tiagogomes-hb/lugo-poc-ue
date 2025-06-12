@@ -9,11 +9,14 @@ main .section .teaser-row-wrapper {
     width: 100%;
 }
 
-.block.teaser-row.fifty-fifty > div {
-    width: 50%;
+.block.teaser-row > div {
     display: block;
     position: relative;
     border: 1px solid #eee;
+}
+
+.block.teaser-row.fifty-fifty > div {
+    width: 50%;
 }
 
 .block.teaser-row.forty-sixty > div:first-child {
