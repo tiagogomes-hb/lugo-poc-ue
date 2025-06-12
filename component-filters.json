@@ -16,13 +16,19 @@
       "cards",
       "columns",
       "fragment",
-      "teaser"
+      "teaser-row"
     ]
   },
   {
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "teaser-row",
+    "components": [
+      "teaser"
     ]
   },
   {

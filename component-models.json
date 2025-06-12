@@ -216,6 +216,31 @@
     ]
   },
   {
+    "id": "teaser-row",
+    "fields": [
+      {
+        "component": "select",
+        "name": "layout",
+        "label": "Layout",
+        "options": [
+          {
+            "name": "40-60",
+            "value": "40-60"
+          },
+          {
+            "name": "60-40",
+            "value": "60-40"
+          }
+          ,
+          {
+            "name": "50-50",
+            "value": "50-50"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "teaser",
     "fields": [
       {
@@ -231,53 +256,6 @@
         "name": "subline",
         "label": "Subline",
         "value": ""
-      },
-      {
-        "component": "select",
-        "name": "width",
-        "label": "Width",
-        "options": [
-          {
-            "name": "20%",
-            "value": "20"
-          },
-          {
-            "name": "25%",
-            "value": "25"
-          },
-          {
-            "name": "30%",
-            "value": "30"
-          },
-          {
-            "name": "40%",
-            "value": "40"
-          },
-          {
-            "name": "50%",
-            "value": "50"
-          },
-          {
-            "name": "60%",
-            "value": "60"
-          },
-          {
-            "name": "70%",
-            "value": "70"
-          },
-          {
-            "name": "75%",
-            "value": "75"
-          },
-          {
-            "name": "80%",
-            "value": "80"
-          },
-          {
-            "name": "100%",
-            "value": "100"
-          }
-        ]
       },
       {
         "component": "reference",
