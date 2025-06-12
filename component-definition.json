@@ -167,7 +167,7 @@
                 "template": {
                   "name": "Teaser Row",
                   "model": "teaser-row",
-                  "layout": "50-50",
+                  "classes": "fifty-fifty",
                   "filter": "teaser-row"
                 }
               }

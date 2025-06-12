@@ -1,8 +1,31 @@
+main .section .teaser-row-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
 .block.teaser-row {
     background-color: #ccc;
     padding: 0 0 24px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin: 1rem 0;
     width: 100%;
+}
+
+.block.teaser-row.fifty-fifty div {
+    width: 50%;
+}
+
+.block.teaser-row.forty-sixty div:first-child {
+    width: 40%;
+}
+.block.teaser-row.forty-sixty div:last-child {
+    width: 60%;
+}
+
+.block.teaser-row.sixty-forty div:first-child {
+    width: 60%;
+}
+.block.teaser-row.sixty-forty div:last-child {
+    width: 40%;
 }

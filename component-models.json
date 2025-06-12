@@ -225,15 +225,15 @@
         "options": [
           {
             "name": "40-60",
-            "value": "40-60"
+            "value": "forty-sixty"
           },
           {
             "name": "60-40",
-            "value": "60-40"
+            "value": "sixty-forty"
           },
           {
             "name": "50-50",
-            "value": "50-50"
+            "value": "fifty-fifty"
           }
         ]
       }
