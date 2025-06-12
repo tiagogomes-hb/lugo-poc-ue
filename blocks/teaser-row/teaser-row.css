@@ -22,6 +22,7 @@ main .section .teaser-row-wrapper {
 .block.teaser-row.forty-sixty > div:first-child {
     width: 40%;
 }
+
 .block.teaser-row.forty-sixty > div:last-child {
     width: 60%;
 }
@@ -29,6 +30,7 @@ main .section .teaser-row-wrapper {
 .block.teaser-row.sixty-forty > div:first-child {
     width: 60%;
 }
+
 .block.teaser-row.sixty-forty > div:last-child {
     width: 40%;
 }
