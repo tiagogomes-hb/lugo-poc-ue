@@ -268,5 +268,29 @@
         "label": "Alt Text"
       }
     ]
+  },
+  {
+    "id": "article-list",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Article type",
+        "options": [
+          {
+            "name": "News",
+            "value": "news"
+          },
+          {
+            "name": "Stories",
+            "value": "stories"
+          },
+          {
+            "name": "Media Resources",
+            "value": "media"
+          }
+        ]
+      }
+    ]
   }
 ]

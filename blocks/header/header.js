@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { fetchNavigationByNamePersistedQuery, buildHeadlessApiURL } from '../../scripts/headless-client.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -112,6 +113,25 @@ export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
+  const queryParamValue = 'consumers:corporate-site';
+
+  const headlessApiURL = buildHeadlessApiURL();
+  console.log(`Using AEM Headless API URL:${headlessApiURL}`);
+
+  const navData = await fetchNavigationByNamePersistedQuery(headlessApiURL, queryParamValue).then(
+    ({ data, err }) => {
+      if (err) {
+        console.log("Error while fetching data");
+      } else if (data?.navigationList?.items.length === 1) {
+        const navData = data.navigationList.items[0];
+        console.log(navData);
+        return navData;
+      } else {
+        console.log(`Cannot find navigation with name: ${queryParamValue}`);
+        return null;
+      }
+    }
+  );
 
   // decorate nav DOM
   block.textContent = '';
@@ -142,6 +162,48 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+
+    if (navData != null) {
+      var sectionList = navSections.querySelectorAll(':scope .default-content-wrapper')[0];
+
+      const headlessNav = document.createElement('ul');
+
+      navData.children.forEach((c, i) => {
+        if (c) {
+          const navItemElement = document.createElement('li');
+
+          if (c.children && c.children.length > 0) {
+            const navItemSubList = document.createElement('ul');
+            c.children.forEach((subC, j) => {
+              const subNavItemElement = document.createElement('li');
+
+              const subNavItemElementLink = document.createElement('a');
+              subNavItemElementLink.href = subC.link;
+              subNavItemElementLink.title = subC.title;
+              subNavItemElementLink.innerText = subC.title;
+              subNavItemElement.prepend(subNavItemElementLink);
+
+              navItemSubList.appendChild(subNavItemElement);
+            });
+
+            navItemElement.innerText = c.title;
+            navItemElement.appendChild(navItemSubList);
+          }
+          else {
+            const navItemElementLink = document.createElement('a');
+            navItemElementLink.href = c.link;
+            navItemElementLink.title = c.title;
+            navItemElementLink.innerText = c.title;
+            navItemElement.prepend(navItemElementLink);
+          }
+
+          headlessNav.appendChild(navItemElement);
+        }
+      });
+
+      sectionList.replaceChildren(headlessNav);
+    }
+
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {

@@ -1,0 +1,54 @@
+main .section .teaser-row-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.block.teaser-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.block.teaser-row > div {
+    display: block;
+    position: relative;
+    border: 1px solid #eee;
+}
+
+.block.teaser-row.fifty-fifty > div {
+    width: 50%;
+}
+
+.block.teaser-row.forty-sixty > div:first-child {
+    width: 40%;
+}
+
+.block.teaser-row.forty-sixty > div:last-child {
+    width: 60%;
+}
+
+.block.teaser-row.sixty-forty > div:first-child {
+    width: 60%;
+}
+
+.block.teaser-row.sixty-forty > div:last-child {
+    width: 40%;
+}
+
+.block.teaser-row div picture img {
+    display: block;
+    z-index: -1;
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+}
+
+.block.teaser-row div .image-overlay {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 1rem;
+    font-weight: bold;
+}
