@@ -32,15 +32,20 @@ export default async function decorate(block) {
       if (a) {
         const article = document.createElement('article');
         article.className = 'article-list-item';
+        article.setAttribute("data-aue-resource", "urn:aemconnection:" + a._path + "/jcr:content/data/master");
+        article.setAttribute("data-aue-type", "reference");
+        article.setAttribute("data-aue-filter", "cf");
         
         const articleLink = document.createElement('a');
         articleLink.href = a.slug;
         articleLink.title = a.title;
         articleLink.innerText = a.title;
+        articleLink.setAttribute("data-aue-prop", "title")
         article.prepend(articleLink);
 
         if (a.verticalImage) {
           const optimizedPic = createOptimizedPicture(a.verticalImage._publishUrl, a.title, false, [{ width: a.verticalImage.width }], true);
+          optimizedPic.setAttribute("data-aue-prop", "verticalImage");
           article.prepend(optimizedPic);
         }
 
