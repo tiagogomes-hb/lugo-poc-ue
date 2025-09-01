@@ -1,4 +1,5 @@
 import { fetchArticlesByTypePersistedQuery, buildHeadlessApiURL } from '../../scripts/headless-client.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
   const queryParamValue = 'consumers:corporate-site';
@@ -10,40 +11,43 @@ export default async function decorate(block) {
     ({ data, err }) => {
       if (err) {
         console.log("Error while fetching data");
-      } else if (data?.newsArticleList?.items.length === 1) {
+      } else if (data?.newsArticleList?.items.length > 0) {
         const articlesData = data.newsArticleList;
         console.log(articlesData);
         return articlesData;
       } else {
-        console.log(`Cannot find navigation with name: ${queryParamValue}`);
+        console.log(`Cannot find articles with type: ${queryParamValue}`);
         return null;
       }
     }
   );
 
+  const articleListWrapper = document.createElement('div');
+  articleListWrapper.className = 'list-wrapper';
   block.textContent = '';
 
-  const articles = [];
-  
   if (articlesData != null) {
 
-    articlesData.items.children.forEach((a, i) => {
+    articlesData.items.forEach((a, i) => {
       if (a) {
         const article = document.createElement('article');
-
+        article.className = 'article-list-item';
+        
         const articleLink = document.createElement('a');
         articleLink.href = a.slug;
         articleLink.title = a.title;
         articleLink.innerText = a.title;
         article.prepend(articleLink);
 
-        articles.push(article);
+        if (a.verticalImage) {
+          const optimizedPic = createOptimizedPicture(a.verticalImage._publishUrl, a.title, false, [{ width: a.verticalImage.width }], true);
+          article.prepend(optimizedPic);
+        }
+
+        articleListWrapper.append(article);
       }
     });
   }
-
-  const articleListWrapper = document.createElement('div');
-  articleListWrapper.className = 'article-list-wrapper';
-  articleListWrapper.append(articles);
+  
   block.append(articleListWrapper);
 }
