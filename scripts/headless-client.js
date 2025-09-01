@@ -1,6 +1,8 @@
 // Defines the Headless Service object w/ properties
 const aemHeadlessService = {
-  aemHost: "http://localhost:8010/proxy",
+  proxyHost: "http://localhost:8010/proxy",
+  authorHost: "https://author-p155902-e1649417.adobeaemcloud.com",
+  publishHost: "https://publish-p155902-e1649417.adobeaemcloud.com",
   graphqlAPIEndpoint: "graphql/execute.json",
   projectName: "lugo-poc-hb",
   navigationPersistedQueryName: "corporate-navigation",
@@ -117,8 +119,10 @@ export function buildHeadlessApiURL(host) {
       aemHeadlessService.projectName,
     ].join("/");
   } else {
+    host = typeof UniversalEditorEmbedded !== 'undefined' ? aemHeadlessService.authorHost: aemHeadlessService.publishHost;
+    host = typeof LiveReload !== 'undefined' ? aemHeadlessService.proxyHost: host;
     headlessApiURL = [
-      aemHeadlessService.aemHost,
+      host,
       aemHeadlessService.graphqlAPIEndpoint,
       aemHeadlessService.projectName,
     ].join("/");
