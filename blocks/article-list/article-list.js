@@ -35,6 +35,7 @@ export default async function decorate(block) {
         article.setAttribute("data-aue-resource", "urn:aemconnection:" + a._path + "/jcr:content/data/master");
         article.setAttribute("data-aue-type", "reference");
         article.setAttribute("data-aue-filter", "cf");
+        article.setAttribute("data-aue-label", a.slug);
         
         const articleLink = document.createElement('a');
         articleLink.href = a.slug;
@@ -46,6 +47,7 @@ export default async function decorate(block) {
         if (a.verticalImage) {
           const optimizedPic = createOptimizedPicture(a.verticalImage._publishUrl, a.title, false, [{ width: a.verticalImage.width }], true);
           optimizedPic.setAttribute("data-aue-prop", "verticalImage");
+          optimizedPic.setAttribute("data-aue-type", "media");
           article.prepend(optimizedPic);
         }
 
